@@ -43,9 +43,6 @@ private let reuseIdentifier = "HexCell"
         } else  {
             self.cellWidth = rawCellWidth
         }
-        
-
-        print (self.cellWidth)
     }
     
     override func viewDidLoad() {
