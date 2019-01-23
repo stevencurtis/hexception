@@ -8,82 +8,97 @@
 
 import UIKit
 
+protocol CollectionViewProtocol {
+    func checkClick(answer:UIColor)
+}
+
 private let reuseIdentifier = "Cell"
 
-class HexCollectionViewController: UICollectionViewController {
+class HexCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+private let reuseIdentifier = "HexCell"
+    
+    var correctColor : UIColor?
+    var colors = [UIColor]()
+    var cellCount = 3
+    var cellWidth : CGFloat = 100
+    var cellSpacing = 1
+    
+    var parentVC: CollectionViewProtocol?
+    
+    func setupGame(correctColor : UIColor, colors: [UIColor], cellCount: Int, cellWidth: CGFloat) {
+        guard colors.count == cellCount else {
+            fatalError("insuffient colours provided")
+        }
+        self.correctColor = correctColor
+        self.colors = colors
+        self.cellCount = cellCount
+        
+        let rawCellWidth = (cellWidth / CGFloat( cellCount % 2 == 1 ? cellCount + 1 : cellCount) ) * (self.collectionView.frame.size.height * 1.0) / 100
+        
+        if rawCellWidth > 120 {
+            self.cellWidth = 120
+        } else
+        if rawCellWidth < 30 {
+            self.cellWidth = 30
+        } else  {
+            self.cellWidth = rawCellWidth
+        }
+        
 
+        print (self.cellWidth)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        self.collectionView!.register(HexCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    // change cell size
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: cellWidth, height: cellWidth)
     }
-    */
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+        let cellSpacing: CGFloat = flowLayout.minimumInteritemSpacing
+        let cellCount = CGFloat(collectionView.numberOfItems(inSection: section))
+        var collectionWidth = collectionView.frame.size.width
+        if #available(iOS 11.0, *) {
+            collectionWidth -= collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right
+        }
+        let totalWidth = cellWidth * cellCount + cellSpacing * (cellCount - 1)
+        if totalWidth <= collectionWidth {
+            let edgeInset = (collectionWidth - totalWidth) / 2
+            return UIEdgeInsets(top: flowLayout.sectionInset.top, left: edgeInset, bottom: flowLayout.sectionInset.bottom, right: edgeInset)
+        } else {
+            return flowLayout.sectionInset
+        }
+    }
+    
+    func resetGame() {
+        self.collectionView.reloadData()
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            parentVC!.checkClick(answer: cell.backgroundColor!)
+        }
+    }
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+        return cellCount
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-    
-        // Configure the cell
-    
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as UICollectionViewCell
+        cell.backgroundColor = colors[indexPath.row]
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
-    }
-    */
 
 }

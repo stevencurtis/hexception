@@ -11,8 +11,12 @@ import XCTest
 
 class HexceptionTests: XCTestCase {
 
+    var game: GameLogic!
+    
     override func setUp() {
+        super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        game = GameLogic()
     }
 
     override func tearDown() {
@@ -29,6 +33,12 @@ class HexceptionTests: XCTestCase {
         self.measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testsetupGame() {
+        XCTAssertEqual(game.setupGame(number: 1).correctAnswer, UIColor.red)
+        XCTAssertEqual(UIColor.red.hexString, "FF0000")
+
     }
 
 }

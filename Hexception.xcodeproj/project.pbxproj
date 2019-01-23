@@ -8,11 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		CA1B54E421F7E1E0006C575E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B54E321F7E1E0006C575E /* AppDelegate.swift */; };
-		CA1B54E621F7E1E0006C575E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B54E521F7E1E0006C575E /* ViewController.swift */; };
 		CA1B54E921F7E1E0006C575E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1B54E721F7E1E0006C575E /* Main.storyboard */; };
 		CA1B54EB21F7E1E3006C575E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1B54EA21F7E1E3006C575E /* Assets.xcassets */; };
 		CA1B54EE21F7E1E3006C575E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA1B54EC21F7E1E3006C575E /* LaunchScreen.storyboard */; };
 		CA1B54F921F7E1E3006C575E /* HexceptionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B54F821F7E1E3006C575E /* HexceptionTests.swift */; };
+		CA1B550421F7E268006C575E /* HexGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B550321F7E268006C575E /* HexGameViewController.swift */; };
+		CA1B550621F7E683006C575E /* HexCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B550521F7E683006C575E /* HexCollectionViewController.swift */; };
+		CA1B550821F7F8AF006C575E /* HexCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B550721F7F8AE006C575E /* HexCollectionViewCell.swift */; };
+		CA1B550A21F8023D006C575E /* GameLogicHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B550921F8023D006C575E /* GameLogicHelpers.swift */; };
+		CA1B550D21F805D8006C575E /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B550C21F805D8006C575E /* UIColor.swift */; };
+		CA1B550F21F8072D006C575E /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1B550E21F8072D006C575E /* GameLogic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,7 +33,6 @@
 /* Begin PBXFileReference section */
 		CA1B54E021F7E1E0006C575E /* Hexception.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hexception.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1B54E321F7E1E0006C575E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		CA1B54E521F7E1E0006C575E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CA1B54E821F7E1E0006C575E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		CA1B54EA21F7E1E3006C575E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1B54ED21F7E1E3006C575E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -36,6 +40,12 @@
 		CA1B54F421F7E1E3006C575E /* HexceptionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HexceptionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1B54F821F7E1E3006C575E /* HexceptionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexceptionTests.swift; sourceTree = "<group>"; };
 		CA1B54FA21F7E1E3006C575E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA1B550321F7E268006C575E /* HexGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexGameViewController.swift; sourceTree = "<group>"; };
+		CA1B550521F7E683006C575E /* HexCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCollectionViewController.swift; sourceTree = "<group>"; };
+		CA1B550721F7F8AE006C575E /* HexCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA1B550921F8023D006C575E /* GameLogicHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogicHelpers.swift; sourceTree = "<group>"; };
+		CA1B550C21F805D8006C575E /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		CA1B550E21F8072D006C575E /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +88,13 @@
 			isa = PBXGroup;
 			children = (
 				CA1B54E321F7E1E0006C575E /* AppDelegate.swift */,
-				CA1B54E521F7E1E0006C575E /* ViewController.swift */,
 				CA1B54E721F7E1E0006C575E /* Main.storyboard */,
+				CA1B550921F8023D006C575E /* GameLogicHelpers.swift */,
+				CA1B550E21F8072D006C575E /* GameLogic.swift */,
+				CA1B550B21F805AD006C575E /* Extensions */,
+				CA1B550321F7E268006C575E /* HexGameViewController.swift */,
+				CA1B550521F7E683006C575E /* HexCollectionViewController.swift */,
+				CA1B550721F7F8AE006C575E /* HexCollectionViewCell.swift */,
 				CA1B54EA21F7E1E3006C575E /* Assets.xcassets */,
 				CA1B54EC21F7E1E3006C575E /* LaunchScreen.storyboard */,
 				CA1B54EF21F7E1E3006C575E /* Info.plist */,
@@ -94,6 +109,14 @@
 				CA1B54FA21F7E1E3006C575E /* Info.plist */,
 			);
 			path = HexceptionTests;
+			sourceTree = "<group>";
+		};
+		CA1B550B21F805AD006C575E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CA1B550C21F805D8006C575E /* UIColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,7 +220,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA1B54E621F7E1E0006C575E /* ViewController.swift in Sources */,
+				CA1B550A21F8023D006C575E /* GameLogicHelpers.swift in Sources */,
+				CA1B550D21F805D8006C575E /* UIColor.swift in Sources */,
+				CA1B550F21F8072D006C575E /* GameLogic.swift in Sources */,
+				CA1B550621F7E683006C575E /* HexCollectionViewController.swift in Sources */,
+				CA1B550821F7F8AF006C575E /* HexCollectionViewCell.swift in Sources */,
+				CA1B550421F7E268006C575E /* HexGameViewController.swift in Sources */,
 				CA1B54E421F7E1E0006C575E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
